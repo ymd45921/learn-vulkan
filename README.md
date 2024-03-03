@@ -1,4 +1,4 @@
-<p align="center"><img src="public/favicon/Project_16z.svg" width=64></img></p>
+<p align="center"><img src="public/favicon/Project_16z.svg" width=96></img></p>
 <h1 align="center">Learn Vulkan!</h1>
 <p align="center">Use C++ and Vulkan to draw something!</p>
 
