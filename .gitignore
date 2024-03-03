@@ -1,0 +1,7 @@
+cmake-build-*
+dist
+build
+out
+*.log
+private
+.DS_Store
