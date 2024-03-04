@@ -15,14 +15,18 @@ set(LVK_FILES src/lvk/exception.h src/lvk/exception.cc
         src/lvk/window-app.h
         src/lvk/app.h
         src/lvk/objects/glfw-window.cc
-        src/lvk/objects/glfw-window.h)
+        src/lvk/objects/glfw-window.h
+        src/lvk/objects/device.cc
+        src/lvk/objects/device.h
+        src/lvk/vk-image.cc
+        src/lvk/vk-image.h)
 
 set(MY_FILES src/my/utils.h src/my/utils.cc
         src/lvk/objects/instance.h
         src/lvk/objects/instance.cc
         src/lvk/objects/surface.h
-        src/lvk/objects/physical_device.h
-        src/lvk/objects/physical_device.cc
+        src/lvk/objects/physical-device.h
+        src/lvk/objects/physical-device.cc
         src/lvk/objects/surface.cc)
 
 add_executable(${CMAKE_PROJECT_NAME}_MainApp

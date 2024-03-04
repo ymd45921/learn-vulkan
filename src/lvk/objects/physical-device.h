@@ -29,11 +29,15 @@ namespace lvk {
 
 		[[nodiscard]] VkPhysicalDeviceFeatures features() const;
 
+		[[nodiscard]] VkPhysicalDeviceMemoryProperties memory_props() const;
+
 		[[nodiscard]] std::vector<VkQueueFamilyProperties> queue_families_props() const;
 
 		[[nodiscard]] std::vector<VkExtensionProperties> extensions_props() const;
 
 		[[nodiscard]] bool is_extension_supported(const std::vector<str> &extension_name) const;
+
+		[[nodiscard]] uint32_t pick_memory_type(uint32_t type_filter, VkMemoryPropertyFlags properties) const;
 
 		[[nodiscard]] VkSurfaceCapabilitiesKHR
 		surface_capabilities(const VkSurfaceKHR &surface) const; // todo: 放在哪儿更合适？

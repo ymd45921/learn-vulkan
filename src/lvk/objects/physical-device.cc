@@ -1,6 +1,7 @@
-#include "physical_device.h"
 #include "lvk/lvk.h"
+#include "physical-device.h"
 
+#include <algorithm>
 #include <set>
 
 lvk::physical_device::physical_device(VkPhysicalDevice const &handle) : handle(handle) {}
@@ -19,6 +20,12 @@ VkPhysicalDeviceFeatures lvk::physical_device::features() const {
 	VkPhysicalDeviceFeatures features;
 	vkGetPhysicalDeviceFeatures(handle, &features);
 	return features;
+}
+
+VkPhysicalDeviceMemoryProperties lvk::physical_device::memory_props() const {
+	VkPhysicalDeviceMemoryProperties props;
+	vkGetPhysicalDeviceMemoryProperties(handle, &props);
+	return props;
 }
 
 std::vector<VkQueueFamilyProperties> lvk::physical_device::queue_families_props() const {
@@ -46,6 +53,18 @@ bool lvk::physical_device::is_extension_supported(const std::vector<str> &extens
 	for (const auto &prop : props)
 		set.insert(prop.extensionName);
 	return std::ranges::all_of(extension_name, [&](str i) { return set.contains(i); });
+}
+
+uint32_t lvk::physical_device::pick_memory_type(uint32_t type_filter,
+												VkMemoryPropertyFlags properties) const {
+	auto mem_props = memory_props();
+	for (uint32_t i = 0; i < mem_props.memoryTypeCount; ++i) {
+		if ((type_filter & (1 << i)) &&
+			(mem_props.memoryTypes[i].propertyFlags & properties) == properties)
+			return i;
+	}
+	throw lvk::vk_exception(
+		"lvk::physical_device::pick_memory_type: failed to find suitable memory type");
 }
 
 VkSurfaceCapabilitiesKHR
@@ -80,4 +99,3 @@ lvk::physical_device::present_modes(const VkSurfaceKHR &surface) const {
 		"failed to get present mode");
 	return modes;
 }
-

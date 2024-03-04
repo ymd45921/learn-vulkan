@@ -14,6 +14,10 @@ namespace lvk {
 	class glfw_window;
 	class instance;
 	class physical_device;
+	class surface;
+	class device;
+
+	class vk_image2d;
 
 } // namespace lvk
 

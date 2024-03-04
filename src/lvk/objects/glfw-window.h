@@ -5,6 +5,7 @@
 #include "lvk/fwd.h"
 
 #include <string_view>
+#include <vector>
 
 namespace lvk {
 

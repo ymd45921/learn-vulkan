@@ -5,7 +5,7 @@
 #include "exception.h"
 #include "fwd.h"
 #include "objects/instance.h"
-#include "objects/physical_device.h"
+#include "objects/physical-device.h"
 
 #include <functional>
 #include <string>
