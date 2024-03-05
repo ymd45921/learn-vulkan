@@ -32,10 +32,5 @@
     <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/SIMPLE_CASE_STATEMENT_STYLE/@EntryValue" value="ON_SINGLE_LINE" type="string" />
     <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/LINE_BREAK_BEFORE_REQUIRES_CLAUSE/@EntryValue" value="LINE_BREAK" type="string" />
     <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/ALLOW_COMMENT_AFTER_LBRACE/@EntryValue" value="true" type="bool" />
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/LINE_BREAK_AFTER_COLON_IN_MEMBER_INITIALIZER_LISTS/@EntryValue" />
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_BEFORE_COMMA_IN_BASE_CLAUSE/@EntryValue" />
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_BEFORE_COMMA/@EntryValue" />
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_AFTER_EXPRESSION_LBRACE/@EntryValue" />
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/WRAP_AFTER_INVOCATION_LPAR/@EntryValue" />
   </component>
 </project>

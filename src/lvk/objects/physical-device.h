@@ -1,5 +1,5 @@
-#ifndef LEARNVULKAN_PHYSICAL_DEVICE_H
-#define LEARNVULKAN_PHYSICAL_DEVICE_H
+#ifndef LVK_PHYSICAL_DEVICE_H
+#define LVK_PHYSICAL_DEVICE_H
 #pragma once
 
 #include "../fwd.h"
@@ -52,4 +52,4 @@ namespace lvk {
 	};
 } // namespace lvk
 
-#endif // LEARNVULKAN_PHYSICAL_DEVICE_H
+#endif // LVK_PHYSICAL_DEVICE_H

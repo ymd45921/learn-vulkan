@@ -17,9 +17,16 @@ namespace lvk {
 	class surface;
 	class device;
 	class descriptor_set_layout;
+	class swapchain;
 
 	class vk_image2d;
 	class vk_buffer;
+
+	namespace wrap {
+
+		struct surface_capabilities;
+
+	} // namespace wrap
 
 } // namespace lvk
 
