@@ -35,7 +35,8 @@ namespace lvk {
 	 * @param instance_handle   Vulkan 实例句柄
 	 * @return  Vulkan 物理设备列表
 	 */
-	std::vector<VkPhysicalDevice> get_vulkan_physical_devices(const VkInstance &instance_handle);
+	std::vector<VkPhysicalDevice>
+	get_vulkan_physical_devices(const VkInstance &instance_handle);
 
 	/**
 	 * @brief	创建 Vulkan 物理设备
@@ -62,6 +63,6 @@ namespace lvk {
 	 * @return  包含队列族索引的结构体
 	 */
 
-}
+} // namespace lvk
 
-#endif //LVK_UTILS_H
+#endif // LVK_UTILS_H

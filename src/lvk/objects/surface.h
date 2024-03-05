@@ -19,7 +19,6 @@ namespace lvk {
 		surface(VkSurfaceKHR handle, VkInstance dep);
 
 	public:
-
 		[[deprecated]] surface();
 
 		static surface create(const instance &instance, const glfw_window &window);
@@ -29,6 +28,6 @@ namespace lvk {
 		VkSurfaceKHR operator*() const { return handle; }
 	};
 
-}
+} // namespace lvk
 
 #endif // LVK_SURFACE_H

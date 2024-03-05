@@ -4,8 +4,8 @@
 
 #include "../fwd.h"
 
-#include <vulkan/vulkan.h>
 #include <vector>
+#include <vulkan/vulkan.h>
 
 namespace lvk {
 
@@ -35,9 +35,11 @@ namespace lvk {
 
 		[[nodiscard]] std::vector<VkExtensionProperties> extensions_props() const;
 
-		[[nodiscard]] bool is_extension_supported(const std::vector<str> &extension_name) const;
+		[[nodiscard]] bool
+		is_extension_supported(const std::vector<str> &extension_name) const;
 
-		[[nodiscard]] uint32_t pick_memory_type(uint32_t type_filter, VkMemoryPropertyFlags properties) const;
+		[[nodiscard]] uint32_t pick_memory_type(uint32_t type_filter,
+												VkMemoryPropertyFlags properties) const;
 
 		[[nodiscard]] VkSurfaceCapabilitiesKHR
 		surface_capabilities(const VkSurfaceKHR &surface) const; // todo: 放在哪儿更合适？
@@ -48,6 +50,6 @@ namespace lvk {
 		[[nodiscard]] std::vector<VkPresentModeKHR>
 		present_modes(const VkSurfaceKHR &surface) const;
 	};
-}
+} // namespace lvk
 
 #endif // LEARNVULKAN_PHYSICAL_DEVICE_H

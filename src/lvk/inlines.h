@@ -32,6 +32,6 @@ namespace lvk {
 		std::cerr << "[DebugMessenger] " << p_cb_data->pMessage << std::endl;
 		return VK_FALSE;
 	}
-}
+} // namespace lvk
 
-#endif //LVK_INLINES_H
+#endif // LVK_INLINES_H

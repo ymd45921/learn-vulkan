@@ -9,40 +9,36 @@
 
 namespace lvk {
 
-    class glfw_window {
+	class glfw_window {
 
-        constexpr static int
-        default_width = 800, default_height = 600;
-        static bool glfw_initialized;
+		constexpr static int default_width = 800, default_height = 600;
+		static bool glfw_initialized;
 
-        GLFWwindow *handle;
-        int width, height;
+		GLFWwindow *handle;
+		int width, height;
 
-        exit_code create_window(std::string_view title,
-                                std::string_view w = "");
+		exit_code create_window(std::string_view title, std::string_view w = "");
 
-    public:
-        explicit glfw_window(std::string_view title,
-                             int width = default_width,
-                             int height = default_height);
+	public:
+		explicit glfw_window(std::string_view title, int width = default_width,
+							 int height = default_height);
 
-        glfw_window(int width, int height);
+		glfw_window(int width, int height);
 
-        ~glfw_window();
+		~glfw_window();
 
-        using self_t = glfw_window;
+		using self_t = glfw_window;
 
-        GLFWwindow *operator*() const { return handle; }
+		GLFWwindow *operator*() const { return handle; }
 
-        static std::vector<str> get_required_extensions();
+		static std::vector<str> get_required_extensions();
 
-        static exit_code initialize_glfw();
+		static exit_code initialize_glfw();
 
-        // todo: 如何在合适的时候反初始化 glfw？
-        static void terminate_glfw() noexcept;
+		// todo: 如何在合适的时候反初始化 glfw？
+		static void terminate_glfw() noexcept;
+	};
 
-    };
+} // namespace lvk
 
-} // lvk
-
-#endif //LVK_GLFW_WINDOW_H
+#endif // LVK_GLFW_WINDOW_H

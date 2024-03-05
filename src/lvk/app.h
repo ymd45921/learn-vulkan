@@ -4,14 +4,14 @@
 
 namespace lvk {
 
-    class app {
+	class app {
 
-    public:
-        virtual signed run() = 0;
+	public:
+		virtual signed run() = 0;
 
-        virtual ~app() = default;
-    };
+		virtual ~app() = default;
+	};
 
-}
+} // namespace lvk
 
-#endif //LVK_APP_H
+#endif // LVK_APP_H

@@ -4,7 +4,8 @@
 
 namespace lvk {
 
-	device::device(const VkDevice &handle, lvk::physical_device *base) : handle(handle), base(base) {}
+	device::device(const VkDevice &handle, lvk::physical_device *base) :
+		handle(handle), base(base) {}
 
 	device::~device() { vkDestroyDevice(handle, default_vk_allocation_callbacks); }
 
@@ -17,4 +18,4 @@ namespace lvk {
 	}
 
 
-} // lvk
+} // namespace lvk

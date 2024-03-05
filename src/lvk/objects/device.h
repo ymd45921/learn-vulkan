@@ -21,7 +21,6 @@ namespace lvk {
 		device(const VkDevice &handle, lvk::physical_device *base);
 
 	public:
-
 		// ? 如果它需要公开构造器，那么是在哪些场合需要？
 
 		~device();
@@ -30,10 +29,10 @@ namespace lvk {
 
 		[[nodiscard]] physical_device &physical_device() const;
 
-		[[nodiscard]] VkQueue get_queue(uint32_t queue_family_index, uint32_t queue_index) const;
-
+		[[nodiscard]] VkQueue get_queue(uint32_t queue_family_index,
+										uint32_t queue_index) const;
 	};
 
-} // lvk
+} // namespace lvk
 
-#endif //LVK_DEVICE_H
+#endif // LVK_DEVICE_H

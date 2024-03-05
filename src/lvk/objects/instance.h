@@ -27,8 +27,8 @@ namespace lvk {
 	public:
 		explicit instance(
 			std::string_view app_name = "Vulkan Application", // todo: 增添 app_version
-			std::vector<str> enabled_extensions = {}, std::vector<str> enabled_layers = {},
-			unsigned flags = 0);
+			std::vector<str> enabled_extensions = {},
+			std::vector<str> enabled_layers = {}, unsigned flags = 0);
 
 		~instance();
 
@@ -45,13 +45,13 @@ namespace lvk {
 	 * @see	 	lvk/lvk.h 中定义的 lvk::proc_loader
 	 */
 	template <typename pf_vk_api>
-	std::function<std::remove_pointer_t<pf_vk_api>> proc_loader(const instance &vki, str api_name,
-																bool throw_on_failure = true) {
+	std::function<std::remove_pointer_t<pf_vk_api>>
+	proc_loader(const instance &vki, str api_name, bool throw_on_failure = true) {
 		return proc_loader<pf_vk_api>(*vki, api_name, throw_on_failure);
 	}
 	template <typename pf_vk_api>
-	std::function<std::remove_pointer_t<pf_vk_api>> proc_loader(const instance *vki, str api_name,
-																bool throw_on_failure = true) {
+	std::function<std::remove_pointer_t<pf_vk_api>>
+	proc_loader(const instance *vki, str api_name, bool throw_on_failure = true) {
 		return proc_loader<pf_vk_api>(**vki, api_name, throw_on_failure);
 	}
 } // namespace lvk

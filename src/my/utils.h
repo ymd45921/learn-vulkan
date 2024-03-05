@@ -14,8 +14,6 @@ namespace my {
 	std::string remove_string_spaces(std::string_view str);
 
 
+} // namespace my
 
-
-}
-
-#endif //MY_UTILS_H
+#endif // MY_UTILS_H

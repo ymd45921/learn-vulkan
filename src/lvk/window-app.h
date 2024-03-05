@@ -11,18 +11,14 @@ namespace lvk {
 
 	class window_app : public app {
 
-        glfw_window wnd;
-        instance vki;
+		glfw_window wnd;
+		instance vki;
 
-    public:
-        window_app(std::string_view title, int width = 800, int height = 600);
-
-
-
+	public:
+		window_app(std::string_view title, int width = 800, int height = 600);
 	};
-	
-}
+
+} // namespace lvk
 
 
-
-#endif //LVK_WINDOW_APP_H
+#endif // LVK_WINDOW_APP_H

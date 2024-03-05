@@ -55,8 +55,8 @@ lvk::instance::instance(std::string_view app_name, std::vector<str> enabled_exte
 
 lvk::instance::~instance() {
 #ifdef LearnVulkan_debug
-	lvk_load_vulkan_api(handle, vkDestroyDebugUtilsMessengerEXT)(handle, debug_messenger,
-																 default_vk_allocation_callbacks);
+	lvk_load_vulkan_api(handle, vkDestroyDebugUtilsMessengerEXT)(
+		handle, debug_messenger, default_vk_allocation_callbacks);
 #endif
 	vkDestroyInstance(handle, default_vk_allocation_callbacks);
 }
@@ -74,8 +74,8 @@ lvk::instance::pick_physical_device(const std::vector<str> &required_extensions)
 		return device.is_extension_supported(required_extensions);
 	});
 	if (result == devices.end()) {
-		throw vk_exception(
-			"lvk::instance::pick_physical_device: no suitable physical device found.");
+		throw vk_exception("lvk::instance::pick_physical_device: no suitable "
+						   "physical device found.");
 	}
 	return *result;
 }

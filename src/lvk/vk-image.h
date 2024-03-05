@@ -14,14 +14,16 @@ namespace lvk {
 		device *base;
 		VkDeviceMemory memory;
 
-		vk_image2d(const VkImage &handle, device *device, VkDeviceMemory memory = VK_NULL_HANDLE);
+		vk_image2d(const VkImage &handle, device *device,
+				   VkDeviceMemory memory = VK_NULL_HANDLE);
 
-		[[nodiscard]] VkDeviceMemory allocate_memory(const VkMemoryPropertyFlags &properties);
+		[[nodiscard]] VkDeviceMemory
+		allocate_memory(const VkMemoryPropertyFlags &properties);
 
 	public:
-
 		static vk_image2d create(const VkImageCreateInfo &create_info, device *device,
-								 const VkMemoryPropertyFlags &properties); // todo: 每次都分配一块新的设备内存！
+								 const VkMemoryPropertyFlags
+									 &properties); // todo: 每次都分配一块新的设备内存！
 
 		VkImage operator*() const { return handle; }
 
@@ -30,9 +32,8 @@ namespace lvk {
 		[[nodiscard]] VkDeviceMemory memory_handle() const;
 
 		[[nodiscard]] device &parent_device() const;
-
 	};
 
-} // lvk
+} // namespace lvk
 
-#endif //LVK_VK_IMAGE_H
+#endif // LVK_VK_IMAGE_H

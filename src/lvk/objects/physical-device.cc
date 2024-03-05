@@ -1,5 +1,5 @@
-#include "lvk/lvk.h"
 #include "physical-device.h"
+#include "lvk/lvk.h"
 
 #include <algorithm>
 #include <set>
@@ -38,8 +38,9 @@ std::vector<VkQueueFamilyProperties> lvk::physical_device::queue_families_props(
 
 std::vector<VkExtensionProperties> lvk::physical_device::extensions_props() const {
 	uint32_t count;
-	lvk_throw_if_failed_ex(vkEnumerateDeviceExtensionProperties(handle, nullptr, &count, nullptr),
-						   "failed to get device extension properties count");
+	lvk_throw_if_failed_ex(
+		vkEnumerateDeviceExtensionProperties(handle, nullptr, &count, nullptr),
+		"failed to get device extension properties count");
 	std::vector<VkExtensionProperties> result(count);
 	lvk_throw_if_failed_ex(
 		vkEnumerateDeviceExtensionProperties(handle, nullptr, &count, result.data()),
@@ -47,7 +48,8 @@ std::vector<VkExtensionProperties> lvk::physical_device::extensions_props() cons
 	return result;
 }
 
-bool lvk::physical_device::is_extension_supported(const std::vector<str> &extension_name) const {
+bool lvk::physical_device::is_extension_supported(
+	const std::vector<str> &extension_name) const {
 	auto props = extensions_props();
 	std::set<str> set;
 	for (const auto &prop : props)
@@ -63,23 +65,25 @@ uint32_t lvk::physical_device::pick_memory_type(uint32_t type_filter,
 			(mem_props.memoryTypes[i].propertyFlags & properties) == properties)
 			return i;
 	}
-	throw lvk::vk_exception(
-		"lvk::physical_device::pick_memory_type: failed to find suitable memory type");
+	throw lvk::vk_exception("lvk::physical_device::pick_memory_type: failed to "
+							"find suitable memory type");
 }
 
 VkSurfaceCapabilitiesKHR
 lvk::physical_device::surface_capabilities(VkSurfaceKHR const &surface) const {
 	VkSurfaceCapabilitiesKHR caps;
-	lvk_throw_if_failed_ex(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(handle, surface, &caps),
-						   "failed to get surface capabilities");
+	lvk_throw_if_failed_ex(
+		vkGetPhysicalDeviceSurfaceCapabilitiesKHR(handle, surface, &caps),
+		"failed to get surface capabilities");
 	return caps;
 }
 
 std::vector<VkSurfaceFormatKHR>
 lvk::physical_device::surface_formats(const VkSurfaceKHR &surface) const {
 	uint32_t count;
-	lvk_throw_if_failed_ex(vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &count, nullptr),
-						   "failed to get surface formats count");
+	lvk_throw_if_failed_ex(
+		vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &count, nullptr),
+		"failed to get surface formats count");
 	std::vector<VkSurfaceFormatKHR> formats(count);
 	lvk_throw_if_failed_ex(
 		vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &count, formats.data()),

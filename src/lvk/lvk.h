@@ -26,7 +26,8 @@ namespace lvk {
 		auto devices = vki.get_physical_devices();
 		auto result = std::ranges::max_element(devices, score);
 		if (result == devices.end()) {
-			throw vk_exception("lvk::pick_physical_device: no suitable physical device found.");
+			throw vk_exception("lvk::pick_physical_device: no suitable "
+							   "physical device found.");
 		}
 		return *result;
 	}
@@ -38,18 +39,18 @@ namespace lvk {
 	 * @tparam pf_vk_api        Vulkan API 函数指针类型，往往以 PFN_ 开头
 	 * @param vki               Vulkan 实例句柄，被传递给 vkGetInstanceProcAddr
 	 * @param api_name          Vulkan API 函数名，由宏 #api_name 自动填写
-	 * @param throw_on_failure  是否在加载失败时抛出异常，为 false 会返回空函数对象
+	 * @param throw_on_failure  是否在加载失败时抛出异常，为 false
+	 * 会返回空函数对象
 	 * @return                  目标 Vulkan API 函数指针
 	 */
 	template <typename pf_vk_api>
-	std::function<std::remove_pointer_t<pf_vk_api>> proc_loader(VkInstance vki, str api_name,
-																bool throw_on_failure = true) {
+	std::function<std::remove_pointer_t<pf_vk_api>>
+	proc_loader(VkInstance vki, str api_name, bool throw_on_failure = true) {
 		auto proc = vkGetInstanceProcAddr(vki, api_name);
 		if (throw_on_failure && !proc) {
-			throw vk_exception(std::string("lvk::proc_loader: failed to load proc \'") + api_name +
-							   "\'.");
-		}
-		else
+			throw vk_exception(std::string("lvk::proc_loader: failed to load proc \'") +
+							   api_name + "\'.");
+		} else
 			return reinterpret_cast<pf_vk_api>(proc);
 	}
 
@@ -57,6 +58,7 @@ namespace lvk {
 
 // todo: 使用 Volk 代替手动加载 Vulkan API；
 // ! Mac 上的 FindVulkan 找不到 Volk
-#define lvk_load_vulkan_api(vki, api_name) lvk::proc_loader<PFN_##api_name>(vki, #api_name)
+#define lvk_load_vulkan_api(vki, api_name)                                               \
+	lvk::proc_loader<PFN_##api_name>(vki, #api_name)
 
 #endif // LVK_H
