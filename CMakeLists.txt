@@ -37,7 +37,8 @@ set(LVK_FILES src/lvk/exception.h src/lvk/exception.cc
 	src/lvk/wrappers/traits.h
 )
 
-set(MY_FILES src/my/utils.h src/my/utils.cc)
+set(MY_FILES src/my/utils.h src/my/utils.cc
+	src/my/type-traits.h)
 
 add_executable(${CMAKE_PROJECT_NAME}_MainApp
 	${LVK_FILES} ${MY_FILES} src/main.cc)

@@ -7,13 +7,20 @@
 
 #include <vulkan/vulkan.h>
 
-namespace lvk::wrap {
+namespace lvk::wrappers {
 
-	struct surface_capabilities : wrapper_interface<VkSurfaceCapabilitiesKHR> {
+	template <>
+	struct is_wrappable<VkSurfaceCapabilitiesKHR> : std::true_type {
+		using wrapped_type = surface_capabilities;
+		using inner_type = VkSurfaceCapabilitiesKHR;
+	};
+
+	struct surface_capabilities
+		: wrapper_interface<VkSurfaceCapabilitiesKHR> {
 
 		[[nodiscard]] inline uint32_t auto_image_count() const;
 	};
 
-} // namespace lvk::wrap
+} // namespace lvk::wrappers
 
 #endif //LVK_SURFACE_CAPABILITIES_H

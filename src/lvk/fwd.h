@@ -22,11 +22,11 @@ namespace lvk {
 	class vk_image2d;
 	class vk_buffer;
 
-	namespace wrap {
+	namespace wrappers {
 
 		struct surface_capabilities;
 
-	} // namespace wrap
+	} // namespace wrappers
 
 } // namespace lvk
 
