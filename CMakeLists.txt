@@ -32,3 +32,4 @@ set(MY_FILES src/my/utils.h src/my/utils.cc
 add_executable(${CMAKE_PROJECT_NAME}_MainApp
     ${LVK_FILES} ${MY_FILES} src/main.cc)
 target_link_vulkan(${CMAKE_PROJECT_NAME}_MainApp)
+target_add_clang_format(${CMAKE_PROJECT_NAME}_MainApp)
