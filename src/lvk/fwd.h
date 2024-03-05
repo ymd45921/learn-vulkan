@@ -16,8 +16,10 @@ namespace lvk {
 	class physical_device;
 	class surface;
 	class device;
+	class descriptor_set_layout;
 
 	class vk_image2d;
+	class vk_buffer;
 
 } // namespace lvk
 

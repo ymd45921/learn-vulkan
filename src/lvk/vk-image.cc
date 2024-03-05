@@ -8,7 +8,7 @@
 namespace lvk {
 
 	vk_image2d::vk_image2d(const VkImage &handle, device *device, VkDeviceMemory memory) :
-		handle(handle), base(device), memory(memory) {}
+		handle(handle), base(device), memory(memory), record() {}
 
 	VkDeviceMemory vk_image2d::allocate_memory(const VkMemoryPropertyFlags &properties) {
 		VkMemoryRequirements requirements = memory_requirements();
@@ -23,6 +23,24 @@ namespace lvk {
 		return memory;
 	}
 
+	bool vk_image2d::is_format_linear_filter_support() const {
+		VkFormatProperties properties;
+		vkGetPhysicalDeviceFormatProperties(*(base->physical_device()), record.format,
+											&properties);
+		VkFormatFeatureFlags flags = 0;
+		if (record.tiling == VK_IMAGE_TILING_LINEAR) {
+			flags = properties.linearTilingFeatures;
+		} else if (record.tiling == VK_IMAGE_TILING_OPTIMAL) {
+			flags = properties.optimalTilingFeatures;
+		}
+		return (flags & VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT) != 0;
+	}
+
+	uint32_t vk_image2d::auto_mip_levels() const {
+		uint32_t max_dim = std::max(record.extent.width, record.extent.height);
+		return static_cast<uint32_t>(std::floor(std::log2(max_dim))) + 1;
+	}
+
 	vk_image2d vk_image2d::create(const VkImageCreateInfo &create_info, device *device,
 								  const VkMemoryPropertyFlags &properties) {
 		VkImage handle;
@@ -30,9 +48,18 @@ namespace lvk {
 											 default_vk_allocation_callbacks, &handle),
 							   "failed to create image");
 		vk_image2d result(handle, device);
+		result.record.layout = create_info.initialLayout;
+		result.record.extent = create_info.extent;
+		result.record.tiling = create_info.tiling;
+		result.record.format = create_info.format;
 		result.memory = result.allocate_memory(properties);
-		vkBindImageMemory(**device, handle, result.memory, 0);
+		lvk_throw_if_failed(vkBindImageMemory(**device, handle, result.memory, 0));
 		return result;
+	}
+
+	vk_image2d::~vk_image2d() noexcept {
+		vkDestroyImage(**base, handle, default_vk_allocation_callbacks);
+		vkFreeMemory(**base, memory, default_vk_allocation_callbacks);
 	}
 
 	VkMemoryRequirements vk_image2d::memory_requirements() const {

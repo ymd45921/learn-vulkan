@@ -4,8 +4,10 @@
 
 #include "exception.h"
 #include "fwd.h"
+#include "objects/device.h"
 #include "objects/instance.h"
 #include "objects/physical-device.h"
+#include "objects/surface.h"
 
 #include <functional>
 #include <string>

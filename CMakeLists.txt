@@ -19,7 +19,9 @@ set(LVK_FILES src/lvk/exception.h src/lvk/exception.cc
         src/lvk/objects/device.cc
         src/lvk/objects/device.h
         src/lvk/vk-image.cc
-        src/lvk/vk-image.h)
+        src/lvk/vk-image.h
+	src/lvk/vk-buffer.cc
+	src/lvk/vk-buffer.h)
 
 set(MY_FILES src/my/utils.h src/my/utils.cc
         src/lvk/objects/instance.h
@@ -27,7 +29,9 @@ set(MY_FILES src/my/utils.h src/my/utils.cc
         src/lvk/objects/surface.h
         src/lvk/objects/physical-device.h
         src/lvk/objects/physical-device.cc
-        src/lvk/objects/surface.cc)
+        src/lvk/objects/surface.cc
+	src/lvk/objects/descriptor-set-layout.cc
+	src/lvk/objects/descriptor-set-layout.h)
 
 add_executable(${CMAKE_PROJECT_NAME}_MainApp
     ${LVK_FILES} ${MY_FILES} src/main.cc)
