@@ -8,6 +8,7 @@
 
 namespace lvk {
 
+	// ? 难道在我目前的工作逻辑中，这根本就不需要 RAII 封装？
 	class vk_image_view {
 
 		VkImageView handle;
