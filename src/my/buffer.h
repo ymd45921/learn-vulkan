@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <span>
+#include <concepts>
 
 namespace my {
 
@@ -17,6 +18,20 @@ namespace my {
 			requires std::constructible_from<std::vector<byte>, Args...>
 		explicit buffer(Args &&... args) :
 			std::vector<byte>(std::forward<Args>(args)...) {}
+
+		template <std::integral T>
+		buffer(const T *p, const size_t size) :
+			type(reinterpret_cast<const unsigned char *>(p),
+			     reinterpret_cast<const unsigned char *>(p) + size * sizeof(T)) {}
+
+		void *raw() noexcept;
+
+		template <std::integral T>
+		T *as() noexcept { return reinterpret_cast<T *>(data()); }
+
+		view borrow() noexcept;
+
+		// todo: to_string()
 
 		// ReSharper disable once CppNonExplicitConversionOperator
 		operator type(); // NOLINT(*-explicit-constructor)

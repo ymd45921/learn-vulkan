@@ -32,6 +32,8 @@ namespace lvk {
 
 		VkDevice operator*() const { return handle; }
 
+		[[nodiscard]] physical_device &parent_device() const;
+
 		[[nodiscard]] physical_device &physical_device() const;
 
 		[[nodiscard]] VkQueue get_queue(uint32_t queue_family_index,

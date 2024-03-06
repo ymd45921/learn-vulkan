@@ -27,6 +27,8 @@ namespace lvk {
 			vkDestroyDevice(handle, default_vk_allocation_callbacks);
 	}
 
+	physical_device & device::parent_device() const { return *base; }
+
 	physical_device &device::physical_device() const { return *base; }
 
 	VkQueue device::get_queue(uint32_t queue_family_index, uint32_t queue_index) const {

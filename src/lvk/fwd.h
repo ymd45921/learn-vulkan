@@ -18,10 +18,13 @@ namespace lvk {
 	class device;
 	class descriptor_set_layout;
 	class swapchain;
+	class render_pass;
 
 	class vk_image2d;
 	class vk_buffer;
 	class vk_image_view;
+	enum class shader_stage; // ? ok吗
+	class shader;
 
 	namespace wrappers {
 

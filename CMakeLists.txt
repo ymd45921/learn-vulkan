@@ -37,6 +37,10 @@ set(LVK_FILES src/lvk/exception.h src/lvk/exception.cc
 	src/lvk/wrappers/traits.h
 	src/lvk/vk-image-view.cc
 	src/lvk/vk-image-view.h
+	src/lvk/objects/render-pass.cc
+	src/lvk/objects/render-pass.h
+	src/lvk/shader.cc
+	src/lvk/shader.h
 )
 
 set(MY_FILES src/my/utils.h src/my/utils.cc
