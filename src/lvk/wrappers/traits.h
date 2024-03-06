@@ -94,12 +94,17 @@ namespace lvk {
 
 	template <std::ranges::contiguous_range R,
 		wrapper T = my::is_single_tparam_template_t<R>>
-		requires my::is_single_tparam_template_v<R>
-	my::replace_only_tparam_t<R, wrap_inner_t<T>> &unsafe_unwrap(R &&range) {
-		static_assert(!std::is_rvalue_reference_v<R&&>,
-		    "unsafe_unwrap cannot be used on rvalue reference.");
+		requires my::is_single_tparam_template_v<R> && (!std::is_rvalue_reference_v<R&&>)
+	my::replace_only_tparam_t<R, wrap_inner_t<T>> &unsafe_wrap(R &&range) {
 		return *reinterpret_cast<my::replace_only_tparam_t<R, wrap_inner_t<T>> *>(&range);
-	}
+	} // 在 wrap 之前需要先使得 range 成为具名符号
+
+	template <std::ranges::contiguous_range R,
+		wrapper T = my::is_single_tparam_template_t<R>>
+	requires my::is_single_tparam_template_v<R> && (!std::is_lvalue_reference_v<R&&>)
+	my::replace_only_tparam_t<R, wrap_inner_t<T>> unsafe_wrap(R &&range) {
+		return std::move(*reinterpret_cast<my::replace_only_tparam_t<R, wrap_inner_t<T>> *>(&range));
+	} // 虽然不可避免的会发生一次析构/构造，但是至少 std::vector 是可以被安全移动的。
 
 } // namespace lvk
 
