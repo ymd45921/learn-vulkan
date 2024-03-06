@@ -64,9 +64,16 @@ namespace lvk {
 		return result;
 	}
 
+	vk_image2d::vk_image2d(vk_image2d &&old) noexcept :
+		handle(old.handle), base(old.base), memory(old.memory), record(old.record) {
+		old.handle = VK_NULL_HANDLE, old.memory = VK_NULL_HANDLE;
+	}
+
 	vk_image2d::~vk_image2d() noexcept {
-		vkDestroyImage(**base, handle, default_vk_allocation_callbacks);
-		vkFreeMemory(**base, memory, default_vk_allocation_callbacks);
+		if (handle != VK_NULL_HANDLE)
+			vkDestroyImage(**base, handle, default_vk_allocation_callbacks);
+		if (memory != VK_NULL_HANDLE)
+			vkFreeMemory(**base, memory, default_vk_allocation_callbacks);
 	}
 
 	VkMemoryRequirements vk_image2d::memory_requirements() const {

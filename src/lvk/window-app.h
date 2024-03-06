@@ -16,6 +16,8 @@ namespace lvk {
 
 	public:
 		window_app(std::string_view title, int width = 800, int height = 600);
+
+		window_app(const window_app &) = delete;
 	};
 
 } // namespace lvk

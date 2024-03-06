@@ -25,6 +25,10 @@ namespace lvk {
 
 		glfw_window(int width, int height);
 
+		glfw_window(const glfw_window &) = delete;
+
+		glfw_window(glfw_window &&) noexcept;
+
 		~glfw_window();
 
 		using self_t = glfw_window;

@@ -18,6 +18,12 @@ namespace lvk {
 	public:
 		static vk_image_view create(device *device, const VkImageViewCreateInfo &create_info);
 
+		vk_image_view(const vk_image_view &) = delete;
+
+		vk_image_view(vk_image_view &&) noexcept;
+
+		~vk_image_view();
+
 		[[nodiscard]] VkImageView operator*() const { return handle; }
 
 		[[nodiscard]] device &parent_device() const;

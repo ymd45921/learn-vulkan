@@ -1,7 +1,8 @@
 #include "instance.h"
 #include "lvk/inlines.h"
-#include "lvk/lvk.h"
 #include "lvk/utils.h"
+#include "lvk/lvk.h"
+#include "lvk/objects/physical-device.h"
 
 #include <ranges>
 
@@ -53,12 +54,23 @@ lvk::instance::instance(std::string_view app_name, std::vector<str> enabled_exte
 #endif
 }
 
+lvk::instance::instance(instance &&old) noexcept {
+	handle = old.handle;
+#ifdef LearnVulkan_debug
+	debug_messenger = old.debug_messenger;
+	old.debug_messenger = VK_NULL_HANDLE;
+#endif
+	old.handle = VK_NULL_HANDLE;
+}
+
 lvk::instance::~instance() {
 #ifdef LearnVulkan_debug
-	lvk_load_vulkan_api(handle, vkDestroyDebugUtilsMessengerEXT)(
-		handle, debug_messenger, default_vk_allocation_callbacks);
+	if (debug_messenger != VK_NULL_HANDLE)
+		lvk_load_vulkan_api(handle, vkDestroyDebugUtilsMessengerEXT)(
+			handle, debug_messenger, default_vk_allocation_callbacks);
 #endif
-	vkDestroyInstance(handle, default_vk_allocation_callbacks);
+	if (handle != VK_NULL_HANDLE)
+		vkDestroyInstance(handle, default_vk_allocation_callbacks);
 }
 
 std::vector<lvk::physical_device> lvk::instance::get_physical_devices() const {

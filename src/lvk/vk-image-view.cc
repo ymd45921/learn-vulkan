@@ -16,6 +16,17 @@ namespace lvk {
 		return {handle, device};
 	}
 
+	vk_image_view::vk_image_view(vk_image_view &&old) noexcept {
+		handle = old.handle, base = old.base;
+		old.handle = VK_NULL_HANDLE;
+	}
+
+	vk_image_view::~vk_image_view() {
+		if (handle != VK_NULL_HANDLE) {
+			vkDestroyImageView(**base, handle, default_vk_allocation_callbacks);
+		}
+	}
+
 	device & vk_image_view::parent_device() const { return *base; }
 
 

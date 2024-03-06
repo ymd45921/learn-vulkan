@@ -15,6 +15,11 @@ namespace lvk {
 			"failed to create descriptor set layout");
 	}
 
+	descriptor_set_layout::descriptor_set_layout(descriptor_set_layout &&old) noexcept {
+		handle = old.handle, base = old.base;
+		old.handle = VK_NULL_HANDLE;
+	}
+
 	descriptor_set_layout::~descriptor_set_layout() noexcept {
 		if (handle != VK_NULL_HANDLE) {
 			vkDestroyDescriptorSetLayout(**base, handle, default_vk_allocation_callbacks);

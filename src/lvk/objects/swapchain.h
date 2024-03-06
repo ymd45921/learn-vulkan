@@ -19,6 +19,12 @@ namespace lvk {
 	public:
 		static swapchain create(device *device, const VkSwapchainCreateInfoKHR &create_info);
 
+		swapchain(const swapchain &) = delete;
+
+		swapchain(swapchain &&) noexcept;
+
+		~swapchain();
+
 		[[nodiscard]] std::vector<VkImage> image_handles() const;
 
 		[[nodiscard]] std::vector<vk_image2d>

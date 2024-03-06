@@ -2,12 +2,13 @@
 #define LVK_INSTANCE_H
 #pragma once
 
-#include <functional>
-#include <string>
 #include "lvk/exception.h"
 #include "lvk/fwd.h"
-#include "vulkan/vulkan.h"
 
+#include <vulkan/vulkan.h>
+#include <string>
+#include <vector>
+#include <functional>
 
 #endif // LVK_INSTANCE_H
 namespace lvk {
@@ -29,6 +30,10 @@ namespace lvk {
 			std::string_view app_name = "Vulkan Application", // todo: 增添 app_version
 			std::vector<str> enabled_extensions = {},
 			std::vector<str> enabled_layers = {}, unsigned flags = 0);
+
+		instance(const instance &) = delete;
+
+		instance(instance &&) noexcept;
 
 		~instance();
 

@@ -21,6 +21,10 @@ namespace lvk {
 		descriptor_set_layout(device *base, std::ranges::contiguous_range auto &&bindings,
 							  VkDescriptorSetLayoutCreateFlags flags = 0);
 
+		descriptor_set_layout(const descriptor_set_layout &) = delete;
+
+		descriptor_set_layout(descriptor_set_layout &&) noexcept;
+
 		~descriptor_set_layout() noexcept;
 
 		VkDescriptorSetLayout operator*() const { return handle; }

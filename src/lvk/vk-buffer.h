@@ -20,7 +20,7 @@ namespace lvk {
 		} record;
 
 		vk_buffer(const VkBuffer &handle, device *device,
-				  VkDeviceMemory memory = LVK_VK_NULL_HANDLE);
+				  VkDeviceMemory memory = VK_NULL_HANDLE);
 
 		// todo: 单个设备可以分配内存的次数有限！
 		[[nodiscard]] VkDeviceMemory
@@ -29,6 +29,10 @@ namespace lvk {
 	public:
 		static vk_buffer create(const VkBufferCreateInfo &create_info, device *device,
 								const VkMemoryPropertyFlags &properties);
+
+		vk_buffer(const vk_buffer &) = delete;
+
+		vk_buffer(vk_buffer &&) noexcept;
 
 		~vk_buffer() noexcept;
 

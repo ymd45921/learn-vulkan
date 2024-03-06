@@ -40,6 +40,10 @@ namespace lvk {
 		inline static vk_image2d // BAD DESIGN!!!
 		dry_create(const VkImage &handle, device *device, const VkImageCreateInfo &create_info);
 
+		vk_image2d(const vk_image2d &) = delete;
+
+		vk_image2d(vk_image2d &&) noexcept;
+
 		~vk_image2d() noexcept;
 
 		VkImage operator*() const { return handle; }

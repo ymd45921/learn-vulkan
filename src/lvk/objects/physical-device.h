@@ -10,7 +10,7 @@
 namespace lvk {
 
 	/**
-	 * @brief   Vulkan 物理设备 RAII 封装
+	 * @brief   Vulkan 物理设备的封装（物理设备无需销毁！）
 	 * @details 用于查询物理设备的属性、特性、队列族等信息；不缓存查询结果
 	 */
 	class physical_device : public vk_object {

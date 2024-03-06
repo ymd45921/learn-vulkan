@@ -18,6 +18,17 @@ namespace lvk {
 		return {handle, device};
 	}
 
+	swapchain::swapchain(swapchain &&old) noexcept {
+		handle = old.handle, base = old.base;
+		old.handle = VK_NULL_HANDLE;
+	}
+
+	swapchain::~swapchain() {
+		if (handle != VK_NULL_HANDLE) {
+			vkDestroySwapchainKHR(**base, handle, default_vk_allocation_callbacks);
+		}
+	}
+
 	std::vector<VkImage> swapchain::image_handles() const {
 		uint32_t count;
 		lvk_throw_if_failed(vkGetSwapchainImagesKHR(**base, handle, &count, nullptr));

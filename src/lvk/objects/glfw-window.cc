@@ -48,6 +48,11 @@ namespace lvk {
 
 	glfw_window::glfw_window(int width, int height) : glfw_window("", width, height) {}
 
+	glfw_window::glfw_window(glfw_window &&old) noexcept {
+		handle = old.handle, width = old.width, height = old.height;
+		old.handle = VK_NULL_HANDLE;
+	}
+
 	glfw_window::~glfw_window() { glfwDestroyWindow(handle); }
 
 	std::vector<str> glfw_window::get_required_extensions() {

@@ -21,7 +21,12 @@ namespace lvk {
 		device(const VkDevice &handle, lvk::physical_device *base);
 
 	public:
-		// ? 如果它需要公开构造器，那么是在哪些场合需要？
+		static device create(physical_device *physical_device,
+							 const VkDeviceCreateInfo &create_info);
+
+		device(const device &) = delete;
+
+		device(device &&) noexcept;
 
 		~device();
 

@@ -13,15 +13,19 @@ namespace lvk {
 	 */
 	class surface : public vk_object {
 
-		VkInstance dep;
+		instance *base;
 		VkSurfaceKHR handle;
 
-		surface(VkSurfaceKHR handle, VkInstance dep);
+		surface(instance *dep, VkSurfaceKHR handle);
 
 	public:
 		[[deprecated]] surface();
 
-		static surface create(const instance &instance, const glfw_window &window);
+		surface(const surface &) = delete;
+
+		surface(surface &&) noexcept;
+
+		static surface create(instance *instance, const glfw_window &window);
 
 		~surface(); // ? 如何表现 Surface 对于 Instance 的依赖关系？
 
