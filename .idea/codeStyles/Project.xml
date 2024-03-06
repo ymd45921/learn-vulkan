@@ -1,7 +1,9 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <Objective-C>
+      <option name="SPACE_BEFORE_TEMPLATE_DECLARATION_LT" value="true" />
       <option name="SPACE_WITHIN_EMPTY_BRACES" value="true" />
+      <option name="HEADER_GUARD_STYLE_PATTERN" value="LVK_${FILE_NAME}_${EXT}" />
     </Objective-C>
     <RiderCodeStyleSettings>
       <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/INDENT_STYLE/@EntryValue" value="Tab" type="string" />

@@ -21,6 +21,7 @@ namespace lvk {
 
 	class vk_image2d;
 	class vk_buffer;
+	class vk_image_view;
 
 	namespace wrappers {
 

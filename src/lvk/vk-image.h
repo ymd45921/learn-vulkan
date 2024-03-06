@@ -22,7 +22,7 @@ namespace lvk {
 		} record;
 
 		vk_image2d(const VkImage &handle, device *device,
-				   VkDeviceMemory memory = VK_NULL_HANDLE);
+		           VkDeviceMemory memory = VK_NULL_HANDLE);
 
 		[[nodiscard]] VkDeviceMemory
 		allocate_memory(const VkMemoryPropertyFlags &properties);
@@ -33,9 +33,12 @@ namespace lvk {
 		[[nodiscard]] uint32_t auto_mip_levels() const;
 
 	public:
-		static vk_image2d create(const VkImageCreateInfo &create_info, device *device,
-								 const VkMemoryPropertyFlags
-									 &properties); // todo: 每次都分配一块新的设备内存！
+		static vk_image2d
+		create(device *device, const VkImageCreateInfo &create_info,
+		       const VkMemoryPropertyFlags &properties); // todo: 每次都分配一块新的设备内存！
+
+		inline static vk_image2d // BAD DESIGN!!!
+		dry_create(const VkImage &handle, device *device, const VkImageCreateInfo &create_info);
 
 		~vk_image2d() noexcept;
 
@@ -46,6 +49,9 @@ namespace lvk {
 		[[nodiscard]] VkDeviceMemory memory_handle() const;
 
 		[[nodiscard]] device &parent_device() const;
+
+		[[nodiscard]] vk_image_view create_view(const VkImageViewCreateInfo &create_info) const;
+
 	};
 
 } // namespace lvk

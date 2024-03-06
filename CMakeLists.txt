@@ -35,6 +35,8 @@ set(LVK_FILES src/lvk/exception.h src/lvk/exception.cc
 	src/lvk/wrappers/surface-capabilities.cc
 	src/lvk/wrappers/surface-capabilities.h
 	src/lvk/wrappers/traits.h
+	src/lvk/vk-image-view.cc
+	src/lvk/vk-image-view.h
 )
 
 set(MY_FILES src/my/utils.h src/my/utils.cc

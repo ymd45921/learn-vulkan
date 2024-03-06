@@ -1,0 +1,28 @@
+#ifndef LVK_VK_IMAGE_VIEW_H
+#define LVK_VK_IMAGE_VIEW_H
+#pragma once
+
+#include "fwd.h"
+
+#include <vulkan/vulkan.h>
+
+namespace lvk {
+
+	class vk_image_view {
+
+		VkImageView handle;
+		device *base;
+
+		vk_image_view(const VkImageView &handle, device *base);
+
+	public:
+		static vk_image_view create(device *device, const VkImageViewCreateInfo &create_info);
+
+		[[nodiscard]] VkImageView operator*() const { return handle; }
+
+		[[nodiscard]] device &parent_device() const;
+	};
+
+} // lvk
+
+#endif //LVK_VK_IMAGE_VIEW_H
