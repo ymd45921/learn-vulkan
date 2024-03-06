@@ -3,6 +3,8 @@
 
 namespace my {
 
+	using byte = unsigned char;
+
 	struct buffer;
 
 	class fs_exception;

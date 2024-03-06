@@ -8,15 +8,15 @@
 
 namespace my {
 
-	struct buffer : std::vector<char> {
+	struct buffer : std::vector<byte> {
+
+		using type = std::vector<byte>;
+		using view = std::span<byte>;
 
 		template <typename... Args>
-			requires std::constructible_from<std::vector<char>, Args...>
+			requires std::constructible_from<std::vector<byte>, Args...>
 		explicit buffer(Args &&... args) :
-			std::vector<char>(std::forward<Args>(args)...) {}
-
-		using type = std::vector<char>;
-		using view = std::span<char>;
+			std::vector<byte>(std::forward<Args>(args)...) {}
 
 		// ReSharper disable once CppNonExplicitConversionOperator
 		operator type(); // NOLINT(*-explicit-constructor)
