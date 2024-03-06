@@ -27,9 +27,6 @@ namespace lvk {
 
 		[[nodiscard]] std::vector<VkImage> image_handles() const;
 
-		[[nodiscard]] std::vector<vk_image2d>
-		images(const VkSwapchainCreateInfoKHR &create_info) const; // BAD DESIGN!!!
-
 		[[nodiscard]] VkSwapchainKHR operator*() const { return handle; }
 
 		[[nodiscard]] device &parent_device() const;

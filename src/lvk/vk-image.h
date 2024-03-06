@@ -32,13 +32,13 @@ namespace lvk {
 
 		[[nodiscard]] uint32_t auto_mip_levels() const;
 
+		inline static vk_image2d // BAD DESIGN!!!
+		dry_create(const VkImage &handle, device *device, const VkImageCreateInfo &create_info);
+
 	public:
 		static vk_image2d
 		create(device *device, const VkImageCreateInfo &create_info,
 		       const VkMemoryPropertyFlags &properties); // todo: 每次都分配一块新的设备内存！
-
-		inline static vk_image2d // BAD DESIGN!!!
-		dry_create(const VkImage &handle, device *device, const VkImageCreateInfo &create_info);
 
 		vk_image2d(const vk_image2d &) = delete;
 
