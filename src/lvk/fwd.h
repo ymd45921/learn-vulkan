@@ -32,12 +32,6 @@ namespace lvk {
 		struct surface_capabilities;
 		struct application_info;
 
-		namespace pipeline_helpers {
-
-			struct vertex_input;
-
-		} // namespace pipeline_helpers
-
 	} // namespace wrappers
 
 } // namespace lvk

@@ -9,19 +9,28 @@
 
 namespace lvk::wrappers {
 
+	/**
+	 * @brief	包装 Vulkan 结构体的接口
+	 * @details 该接口继承自 Vulkan 结构体，提供了一些额外的方法，用于操作 Vulkan 结构体。
+	 *			作出约定：任何由该类派生的类都应该是一个标准布局的类，以方便类型转换。
+	 * @tparam vk_struct	被包装的 Vulkan 结构体
+	 */
 	template <typename vk_struct>
 	struct wrapper_interface : vk_struct {
 
 		using type = vk_struct;
 		using super [[maybe_unused]] = wrapper_interface;
 
-		// ? 是否需要构造器来显式转发？实现构造器会屏蔽 record 构造器
-
 		vk_struct operator*() const { return *this; }
+
+		// ! dangerously overload unary operator &!!!
+		// vk_struct *operator&() const { return this; }
 
 		type &unwrap() const { return *this; }
 
 		type unwrap() && { return std::move(*this); }
+
+		type *address() const { return this; }
 
 		// ReSharper disable once CppNonExplicitConversionOperator
 		operator type() const { return *this; } // NOLINT(*-explicit-constructor)
@@ -29,12 +38,17 @@ namespace lvk::wrappers {
 		operator type() && { return std::move(*this); } // NOLINT(*-explicit-constructor)
 	};
 
+	/**
+	 * @brief	判断一个 Vulkan 内置结构体类型是否是 wrappable 的
+	 * @details	作出约定，任何派生自 wrapper_interface 的类都是 wrappable 的。
+	 *			因此，实现这些类时应当手动特化该模版。
+	 * @tparam T	要判断的 Vulkan 内置结构体类型
+	 */
 	template <typename T>
 	struct is_wrappable : std::false_type {
 		using wrapped_type = void;
 		using inner_type = T;
 	}; // todo: 当一个类型时 wrappable 的时候，自动让 cv 版本也是 wrappable 的
-
 	template <typename T> requires std::is_base_of_v<wrapper_interface<typename T::type>, T>
 	struct is_wrappable<T> : std::false_type {
 		using wrapped_type = void;
