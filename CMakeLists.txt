@@ -41,6 +41,10 @@ set(LVK_FILES src/lvk/exception.h src/lvk/exception.cc
 	src/lvk/objects/render-pass.h
 	src/lvk/shader.cc
 	src/lvk/shader.h
+	src/lvk/wrappers/pipeline-helpers/vertex-input.cc
+	src/lvk/wrappers/pipeline-helpers/vertex-input.h
+	src/lvk/wrappers/application-info.cc
+	src/lvk/wrappers/application-info.h
 )
 
 set(MY_FILES src/my/utils.h src/my/utils.cc

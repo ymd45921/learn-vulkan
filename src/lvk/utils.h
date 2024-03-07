@@ -11,6 +11,30 @@
 namespace lvk {
 
 	/**
+	 * @brief   检查指定的字符串是否是一个 Vulkan 版本字符串
+	 *			不考虑每个版本号大小是否超过 VK_MAKE_VERSION 的限制
+	 * @param str   要检查的字符串
+	 * @param len   字符串的长度（consteval 版本不需要该参数）
+	 * @return 如果是 Vulkan 版本字符串，则返回 true，否则返回 false
+	 */
+	constexpr bool is_vk_version(const char *str, const size_t len) {
+		const auto end = str + len;
+		const char *p = *str == 'v' || *str == 'V' ? str + 1 : str;
+		int dot_count = 0;
+		while (p != end) {
+			if (*p == '.') {
+				++dot_count;
+				if (dot_count > 2) { return false; }
+			} else if (!std::isdigit(*p)) { return false; }
+			++p;
+		}
+		return true;
+	}
+	consteval bool is_vk_version(const char *str) {
+		return is_vk_version(str, std::strlen(str));
+	}
+
+	/**
 	 * @brief   将 VkResult 转换为字符串
 	 * @param result    VkResult 值
 	 * @return  对应的字符串

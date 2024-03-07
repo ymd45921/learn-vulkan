@@ -11,17 +11,6 @@
 
 namespace lvk {
 
-	inline VkApplicationInfo default_application_info() {
-		VkApplicationInfo app_info = {};
-		app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-		app_info.pApplicationName = "Hello Triangle";
-		app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-		app_info.pEngineName = "No Engine";
-		app_info.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-		app_info.apiVersion = VK_API_VERSION_1_0;
-		return app_info;
-	}
-
 	inline VkAllocationCallbacks *default_vk_allocation_callbacks = nullptr;
 
 	inline VkBool32 default_debug_messenger_cb(

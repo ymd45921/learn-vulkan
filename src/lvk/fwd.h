@@ -7,6 +7,7 @@
 namespace lvk {
 
 	using str = const char *;
+	using version = uint32_t;
 
 	enum class exit_code : int { success = 0, failure = 1 };
 
@@ -29,6 +30,13 @@ namespace lvk {
 	namespace wrappers {
 
 		struct surface_capabilities;
+		struct application_info;
+
+		namespace pipeline_helpers {
+
+			struct vertex_input;
+
+		} // namespace pipeline_helpers
 
 	} // namespace wrappers
 

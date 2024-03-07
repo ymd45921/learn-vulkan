@@ -20,6 +20,13 @@ namespace lvk::wrappers {
 		vk_struct operator*() const { return *this; }
 
 		type &unwrap() const { return *this; }
+
+		type unwrap() && { return std::move(*this); }
+
+		// ReSharper disable once CppNonExplicitConversionOperator
+		operator type() const { return *this; } // NOLINT(*-explicit-constructor)
+		// ReSharper disable once CppNonExplicitConversionOperator // 应该无意义？
+		operator type() && { return std::move(*this); } // NOLINT(*-explicit-constructor)
 	};
 
 	template <typename T>
@@ -50,7 +57,7 @@ namespace lvk {
 	template <typename T>
 	concept wrappable = wrappers::is_wrappable_v<T>;
 
-	template <typename T, bool isWrapper = wrapper<T>, bool isWrappable = wrappable<T>>
+	template <typename T, bool = wrapper<T>, bool = wrappable<T>>
 	struct wrapper_traits {};
 
 	template <typename T>

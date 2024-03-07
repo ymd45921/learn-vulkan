@@ -3,13 +3,13 @@
 #include "lvk/utils.h"
 #include "lvk/lvk.h"
 #include "lvk/objects/physical-device.h"
+#include "lvk/wrappers/application-info.h"
 
 #include <ranges>
 
 lvk::instance::instance(std::string_view app_name, std::vector<str> enabled_extensions,
-						std::vector<str> enabled_layers, unsigned flags) {
-	VkApplicationInfo app_info = default_application_info();
-	app_info.pApplicationName = app_name.data();
+                        std::vector<str> enabled_layers, unsigned flags) {
+	VkApplicationInfo app_info = wrappers::application_info::create(app_name.data());
 #ifdef VULKAN_EXPLICIT_USE_MOLTENVK
 	enabled_extensions.push_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
 	enabled_extensions.push_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
@@ -41,11 +41,11 @@ lvk::instance::instance(std::string_view app_name, std::vector<str> enabled_exte
 	constexpr VkDebugUtilsMessengerCreateInfoEXT setup_debug_messenger_create_info = {
 		.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT,
 		.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT |
-			VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |
-			VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT,
+		VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |
+		VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT,
 		.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT |
-			VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT |
-			VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT,
+		VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT |
+		VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT,
 		.pfnUserCallback = default_debug_messenger_cb,
 		.pUserData = nullptr};
 	lvk_throw_if_failed(lvk_load_vulkan_api(handle, vkCreateDebugUtilsMessengerEXT)(
@@ -87,7 +87,7 @@ lvk::instance::pick_physical_device(const std::vector<str> &required_extensions)
 	});
 	if (result == devices.end()) {
 		throw vk_exception("lvk::instance::pick_physical_device: no suitable "
-						   "physical device found.");
+			"physical device found.");
 	}
 	return *result;
 }
