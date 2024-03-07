@@ -34,6 +34,12 @@ namespace lvk {
 
 	} // namespace wrappers
 
+	namespace helpers {
+
+		struct pipeline_create_helper;
+
+	} // namespace helpers
+
 } // namespace lvk
 
 

@@ -1,5 +1,5 @@
-#ifndef LVK_WRAP_TRAITS_H
-#define LVK_WRAP_TRAITS_H
+#ifndef LVK_WRAPPERS_TRAITS_H
+#define LVK_WRAPPERS_TRAITS_H
 #pragma once
 
 #include <vulkan/vulkan.h>
@@ -129,4 +129,4 @@ namespace lvk {
 
 } // namespace lvk
 
-#endif //LVK_WRAP_TRAITS_H
+#endif //LVK_WRAPPERS_TRAITS_H
