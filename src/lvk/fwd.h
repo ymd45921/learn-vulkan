@@ -20,6 +20,7 @@ namespace lvk {
 	class descriptor_set_layout;
 	class swapchain;
 	class render_pass;
+	class pipeline;
 
 	class vk_image2d;
 	class vk_buffer;

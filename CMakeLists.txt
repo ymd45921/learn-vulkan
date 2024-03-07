@@ -27,6 +27,7 @@ set(LVK_FILES src/lvk/exception.h src/lvk/exception.cc
 	src/lvk/shader.cc src/lvk/shader.h
 	src/lvk/wrappers/application-info.cc src/lvk/wrappers/application-info.h
 	src/lvk/helpers/pipeline-create-helper.cc src/lvk/helpers/pipeline-create-helper.h
+	src/lvk/objects/pipeline.cc src/lvk/objects/pipeline.h
 )
 
 set(MY_FILES src/my/utils.h src/my/utils.cc
