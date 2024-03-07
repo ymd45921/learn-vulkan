@@ -13,8 +13,8 @@ namespace lvk {
 	 */
 	class surface : public vk_object {
 
-		instance *base;
 		VkSurfaceKHR handle;
+		instance *base;
 
 		surface(instance *dep, VkSurfaceKHR handle);
 

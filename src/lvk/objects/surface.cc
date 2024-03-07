@@ -4,7 +4,7 @@
 
 #include "../exception.h"
 
-lvk::surface::surface(instance *dep, VkSurfaceKHR handle) : base(dep), handle(handle) {}
+lvk::surface::surface(instance *dep, VkSurfaceKHR handle) : handle(handle), base(dep) {}
 
 lvk::surface::surface(surface &&old) noexcept {
 	base = old.base, handle = old.handle;
