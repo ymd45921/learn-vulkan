@@ -31,7 +31,9 @@ namespace lvk {
 		return true;
 	}
 	consteval bool is_vk_version(const char *str) {
-		return is_vk_version(str, std::strlen(str));
+		std::size_t len = 0;
+		while (str[len] != '\0') { ++len; }
+		return is_vk_version(str, len); // ! std::strlen 不是 constexpr 函数！
 	}
 
 	/**

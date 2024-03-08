@@ -33,7 +33,7 @@ namespace lvk {
 		std::vector<pipeline> result;
 		result.reserve(infos.size());
 		for (auto &handle : handles) {
-			result.emplace_back(base, handle);
+			result.push_back({base, handle}); // * 即使在类的上下文内，vector 也无法调用私有成员
 		}
 		return result;
 	}

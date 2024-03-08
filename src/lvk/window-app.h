@@ -3,7 +3,7 @@
 #pragma once
 
 #include "app.h"
-#include "instance.h"
+#include "lvk/objects/instance.h"
 #include "lvk.h"
 #include "lvk/objects/glfw-window.h"
 
@@ -15,7 +15,7 @@ namespace lvk {
 		instance vki;
 
 	public:
-		window_app(std::string_view title, int width = 800, int height = 600);
+		explicit window_app(std::string_view title, int width = 800, int height = 600);
 
 		window_app(const window_app &) = delete;
 	};

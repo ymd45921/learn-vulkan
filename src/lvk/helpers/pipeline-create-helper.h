@@ -36,10 +36,10 @@ namespace lvk::helpers {
 			.depthClampEnable = VK_FALSE, // 不启用深度裁剪
 			.rasterizerDiscardEnable = VK_FALSE, // 不启用片段丢弃
 			.polygonMode = VK_POLYGON_MODE_FILL, // 多边形填充模式
-			.lineWidth = 1.0f, // 线宽
 			.cullMode = VK_CULL_MODE_BACK_BIT, // 背面剔除
 			.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE, // 逆时针为正面
 			.depthBiasEnable = VK_FALSE, // 不启用深度偏移
+			.lineWidth = 1.0f, // 线宽
 		};
 
 		// * 默认深度模板测试配置：

@@ -15,7 +15,7 @@ namespace my {
 			throw fs_exception("my::read_file_sync: failed to open file!");
 		auto size = file.tellg();
 		buffer buffer(size);
-		file.seekg(0).read(buffer.data(), size), file.close();
+		file.seekg(0).read(buffer.as<char>(), size), file.close();
 		return buffer;
 	}
 

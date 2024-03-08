@@ -1,6 +1,6 @@
 #include "surface.h"
 #include "glfw-window.h"
-#include "instance.h"
+#include "lvk/objects/instance.h"
 
 #include "../exception.h"
 

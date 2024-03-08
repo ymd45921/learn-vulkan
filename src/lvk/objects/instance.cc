@@ -1,4 +1,4 @@
-#include "instance.h"
+#include "lvk/objects/instance.h"
 #include "lvk/inlines.h"
 #include "lvk/utils.h"
 #include "lvk/lvk.h"

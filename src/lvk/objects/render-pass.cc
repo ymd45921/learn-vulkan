@@ -16,13 +16,13 @@ namespace lvk {
 		handle(VK_NULL_HANDLE), base(device) {
 		VkRenderPassCreateInfo create_info{
 			.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO,
+			.flags = flags,
 			.attachmentCount = static_cast<uint32_t>(attachments.size()),
 			.pAttachments = attachments.data(),
 			.subpassCount = static_cast<uint32_t>(subpasses.size()),
 			.pSubpasses = subpasses.data(),
 			.dependencyCount = static_cast<uint32_t>(dependencies.size()),
 			.pDependencies = dependencies.data(),
-			.flags = flags
 		};
 		lvk_throw_if_failed(vkCreateRenderPass(**device, &create_info,
 			default_vk_allocation_callbacks, &handle));

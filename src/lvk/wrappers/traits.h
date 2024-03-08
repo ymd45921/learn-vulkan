@@ -26,14 +26,14 @@ namespace lvk::wrappers {
 		// ! dangerously overload unary operator &!!!
 		// vk_struct *operator&() const { return this; }
 
-		type &unwrap() const { return *this; }
+		type &unwrap() & { return *this; }
 
 		type unwrap() && { return std::move(*this); }
 
 		type *address() const { return this; }
 
 		// ReSharper disable once CppNonExplicitConversionOperator
-		operator type() const { return *this; } // NOLINT(*-explicit-constructor)
+		operator type() & { return *this; } // NOLINT(*-explicit-constructor)
 		// ReSharper disable once CppNonExplicitConversionOperator // 应该无意义？
 		operator type() && { return std::move(*this); } // NOLINT(*-explicit-constructor)
 	};
