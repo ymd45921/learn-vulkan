@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.25)
 project(LearnVulkan)
 
 set(CMAKE_CXX_STANDARD 20)
-set(DISABLE_Vulkan_MSVC ON)
 
 include(cmake/utils.cmake)
 include(cmake/setenv.cmake)

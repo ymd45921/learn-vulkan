@@ -5,6 +5,8 @@
 #include "objects/physical-device.h"
 #include "vk-image-view.h"
 
+#include <cmath>
+
 namespace lvk {
 
 	vk_image2d::vk_image2d(const VkImage &handle, device *device, VkDeviceMemory memory) :

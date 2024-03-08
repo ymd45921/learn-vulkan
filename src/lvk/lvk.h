@@ -11,6 +11,7 @@
 
 #include <functional>
 #include <string>
+#include <algorithm>
 
 // todo: 统统移走！
 namespace lvk {

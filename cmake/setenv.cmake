@@ -71,21 +71,18 @@ if (Vulkan_FOUND)
 	if (WIN32)
 		if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 			log_ok("Win32 Compiler check: Current build toolchain is ${ANSI_BOLD_MAGENTA}MSVC${ANSI_RESET}.")
-			set(CMAKE_CXX_COMPILER_IS_MSVC ON)
+			set(CMAKE_CXX_COMPILER_IS_MSVC ON) # ?
 			add_definitions(-D__PRETTY_FUNCTION__="__func__")
 			add_compile_options(
 				"/wd4067"   # warning C4067: 预处理器指令后有意外标记 - 应输入换行符
 				"/wd4068"   # warning C4068: 未知的杂注“ide”、“clang”
 				"/wd4819"   # warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 			)
+		elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CMAKE_CXX_SIMULATE_ID STREQUAL "MSVC")
+			log_ok("Win32 Compiler check: Current build toolchain is ${ANSI_BOLD_MAGENTA}Clang for MSVC${ANSI_RESET}.")
 		else ()
-			if (DISABLE_Vulkan_MSVC)
-				log_debug("You can set ${ANSI_MAGENTA}$DISABLE_Vulkan_MSVC${ANSI_RESET} in ${CMAKE_LIST_STR} to re-open compiler check in win32.")
-			else ()
-				log_warn("Win32 Compiler check: Current build toolchain is ${ANSI_BOLD_MAGENTA}${CMAKE_CXX_COMPILER_ID}${ANSI_RESET}.")
-				log_debug("You can set ${ANSI_MAGENTA}$DISABLE_Vulkan_MSVC${ANSI_RESET} in ${CMAKE_LIST_STR} to skip compiler check in win32.")
-				log_err("Vulkan only works with ${ANSI_BOLD_MAGENTA}MSVC${ANSI_RESET} on Windows, but you are using ${ANSI_BOLD_MAGENTA}${CMAKE_CXX_COMPILER_ID}${ANSI_RESET}.")
-			endif ()
+			log_warn("Win32 Compiler check: Current build toolchain is ${ANSI_BOLD_RED}${CMAKE_CXX_COMPILER_ID}${ANSI_RESET}.")
+			log_err("Win32 Compiler check: Vulkan only works with ${ANSI_BOLD_GREEN}MSVC${ANSI_RESET} or ${ANSI_BOLD_GREEN}Clang for MSVC${ANSI_RESET} on Windows.")
 		endif ()
 	elseif (APPLE)
 		if (Vulkan_VERSION GREATER_EQUAL 1.3.216)
